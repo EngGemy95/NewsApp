@@ -84,18 +84,20 @@ fun OnBoardingScreen(
                         })
                 }
 
-                NewsButton(text = buttonState.value[1], onClick = {
-                    scope.launch {
-                        if (pagerState.currentPage == 2){
-                            event(OnBoardingEvent.saveAppEntry)
-                        }else{
-                            pagerState.animateScrollToPage(page = pagerState.currentPage +1)
+                NewsButton(
+                    text = buttonState.value[1],
+                    onClick = {
+                        scope.launch {
+                            if (pagerState.currentPage == 2) {
+                                event(OnBoardingEvent.saveAppEntry)
+                            } else {
+                                pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
+                            }
                         }
                     }
-                })
+                )
             }
         }
-
 
         Spacer(modifier = Modifier.weight(0.5f))
     }

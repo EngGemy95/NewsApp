@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 interface LocalUserManager {
     suspend fun saveEntryApp()
 
-    suspend fun readAppEntry(): Flow<Boolean>
+      fun readAppEntry(): Flow<Boolean>
 }
