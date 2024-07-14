@@ -59,6 +59,7 @@ fun NavGraph(
                 route = Route.NewsNavigatorScreen.route
             ) {
                 val viewModel: SearchViewModel = hiltViewModel()
+
                 SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
             }
         }
