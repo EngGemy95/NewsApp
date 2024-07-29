@@ -7,7 +7,7 @@ import com.loc.newsapp.data.local.NewsDatabase
 import com.loc.newsapp.data.local.NewsTypeConverter
 import com.loc.newsapp.data.manager.LocalUserManagerImpl
 import com.loc.newsapp.data.remote.NewsApi
-import com.loc.newsapp.data.repository.NewsRepositoryInpl
+import com.loc.newsapp.data.repository.NewsRepositoryImpl
 import com.loc.newsapp.domain.manager.LocalUserManager
 import com.loc.newsapp.domain.repository.NewsRepository
 import com.loc.newsapp.domain.usecases.app_entry.AppEntryUsecases
@@ -59,7 +59,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(newsApi: NewsApi) : NewsRepository = NewsRepositoryInpl(newsApi)
+    fun provideNewsRepository(
+        newsApi: NewsApi ,
+        newsDao: NewsDao,
+    ): NewsRepository = NewsRepositoryImpl(newsApi , newsDao)
 
     @Provides
     @Singleton
@@ -67,10 +70,10 @@ object AppModule {
        return NewsUseCases(
            getNews = GetNews(newsRepository) ,
            searchNews = SearchNews(newsRepository),
-           upsertArticle = UpsertArticle(newsDao),
-           deleteArticle = DeleteArticle(newsDao),
-           selectArticles = SelectArticles(newsDao),
-           selectArticle = SelectArticle(newsDao)
+           upsertArticle = UpsertArticle(newsRepository),
+           deleteArticle = DeleteArticle(newsRepository),
+           selectArticles = SelectArticles(newsRepository),
+           selectArticle = SelectArticle(newsRepository)
            )
     }
 

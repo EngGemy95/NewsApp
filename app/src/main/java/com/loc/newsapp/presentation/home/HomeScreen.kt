@@ -27,19 +27,24 @@ import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.presentation.Dimens
 import com.loc.newsapp.presentation.common.ArticlesList
 import com.loc.newsapp.presentation.common.SearchBar
-import com.loc.newsapp.presentation.nvgraph.Route
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
+) {
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > 10) {
                 articles.itemSnapshotList.items
-                    .slice(IntRange(
-                        start = 0,
-                        endInclusive = 9
-                    ))
+                    .slice(
+                        IntRange(
+                            start = 0,
+                            endInclusive = 9
+                        )
+                    )
                     .joinToString(separator = " \uD83d\uDFE5 ") { article ->
                         article.title
                     }
@@ -62,7 +67,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
                 .width(150.dp)
                 .height(30.dp)
                 .padding(horizontal = Dimens.MediumPadding1)
-            )
+        )
 
         Spacer(modifier = Modifier.height(Dimens.MediumPadding1))
 
@@ -71,9 +76,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             text = "",
             readOnly = true,
             onValueChange = {},
-            onClick = {
-                      navigate(Route.SearchScreen.route)
-            },
+            onClick = { navigateToSearch() },
             onSearch = {}
         )
 
@@ -96,7 +99,9 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
         ArticlesList(
             modifier = Modifier.padding(horizontal = Dimens.MediumPadding1),
             articles = articles,
-            onClick = { navigate(Route.DetailsScreen.route) }
+            onClick = {
+                navigateToDetails(it)
+            }
         )
     }
 }

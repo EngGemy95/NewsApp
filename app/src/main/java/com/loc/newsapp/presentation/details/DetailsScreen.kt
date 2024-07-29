@@ -93,6 +93,7 @@ fun DetailsScreen(
                         id = R.color.text_title
                     )
                 )
+
                 Text(
                     text = article.content,
                     style = MaterialTheme.typography.bodyMedium,
