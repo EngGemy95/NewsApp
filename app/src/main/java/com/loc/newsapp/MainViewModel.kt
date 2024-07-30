@@ -33,6 +33,6 @@ class MainViewModel @Inject constructor(
             }
             delay(2000)
             splashCondition = false
-        }   .launchIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 }

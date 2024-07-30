@@ -18,6 +18,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.loc.newsapp.data.local.NewsDao
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.domain.model.Source
+import com.loc.newsapp.presentation.common.EmptyScreen
 import com.loc.newsapp.presentation.nvgraph.NavGraph
 import com.loc.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
         setContent {
             NewsAppTheme {
                 val isSystemInDarkMode = isSystemInDarkTheme()
@@ -53,6 +53,7 @@ class MainActivity : ComponentActivity() {
                         darkIcons = !isSystemInDarkMode
                     )
                 }
+
                 Box(
                     modifier = Modifier.background(color = MaterialTheme.colorScheme.background)
                 ) {
