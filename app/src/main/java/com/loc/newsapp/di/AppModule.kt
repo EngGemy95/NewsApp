@@ -66,7 +66,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsUseCases( newsRepository: NewsRepository , newsDao: NewsDao) : NewsUseCases {
+    fun provideNewsUseCases( newsRepository: NewsRepository) : NewsUseCases {
        return NewsUseCases(
            getNews = GetNews(newsRepository) ,
            searchNews = SearchNews(newsRepository),

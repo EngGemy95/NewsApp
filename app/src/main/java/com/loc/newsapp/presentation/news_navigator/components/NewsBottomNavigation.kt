@@ -70,6 +70,7 @@ data class BottomNavigationItem(
     val text: String
 )
 
+
 @Preview
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -90,7 +91,7 @@ fun NewsBottomNavigationPreview(modifier: Modifier = Modifier) {
                     text = "Bookmark"
                 ),
                 ),
-            selected =0,
+            selected = 0,
             onItemClick = {}
         )
     }

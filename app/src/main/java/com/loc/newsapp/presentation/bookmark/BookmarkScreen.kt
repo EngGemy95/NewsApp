@@ -16,7 +16,7 @@ import com.loc.newsapp.R
 import com.loc.newsapp.domain.model.Article
 import com.loc.newsapp.presentation.Dimens
 import com.loc.newsapp.presentation.common.ArticlesList
-import com.loc.newsapp.presentation.nvgraph.Route
+
 
 @Composable
 fun BookmarkScreen(
@@ -40,7 +40,10 @@ fun BookmarkScreen(
         )
         Spacer(modifier = Modifier.height(Dimens.MediumPadding1))
 
-        ArticlesList(articles = state.articles , onClick = {navigateToDetails(it)})
+        ArticlesList(
+            articles = state.articles ,
+            onClick = {navigateToDetails(it)}
+        )
 
     }
 }

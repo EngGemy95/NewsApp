@@ -149,8 +149,9 @@ fun NewsNavigator(modifier: Modifier = Modifier) {
 
             composable(route = Route.DetailsScreen.route) {
                 val viewModel: DetailsViewModel = hiltViewModel()
-                if(viewModel.sideEffect != null){
-                    Toast.makeText(LocalContext.current,viewModel.sideEffect,Toast.LENGTH_SHORT).show()
+                if (viewModel.sideEffect != null) {
+                    Toast.makeText(LocalContext.current, viewModel.sideEffect, Toast.LENGTH_SHORT)
+                        .show()
                     viewModel.onEvent(DetailsEvent.RemoveSideEffect)
                 }
                 navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
@@ -167,10 +168,12 @@ fun NewsNavigator(modifier: Modifier = Modifier) {
                 val viewModel: BookmarkViewModel = hiltViewModel()
                 val state = viewModel.state.value
 
-                BookmarkScreen(state = state, navigateToDetails = { article ->
-                    navigateToDetails(navController = navController, article = article)
-                })
-
+                BookmarkScreen(
+                    state = state,
+                    navigateToDetails = { article ->
+                        navigateToDetails(navController = navController, article = article)
+                    }
+                )
             }
         }
     }
